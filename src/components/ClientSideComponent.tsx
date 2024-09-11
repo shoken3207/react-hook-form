@@ -5,11 +5,12 @@ import React from "react";
 
 const ClientSideComponent = () => {
   const { data } = trpc.hello.useQuery();
+  const { data: user } = trpc.getUserById.useQuery({ id: 2 });
+
+  console.log("user: ", user);
   const addUser = async (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
-  ) => {
-    const msg = await trpc.createUser({});
-  };
+  ) => {};
   return (
     <div>
       <h1>Client Side Component</h1>

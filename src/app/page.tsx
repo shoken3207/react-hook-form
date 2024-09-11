@@ -1,5 +1,6 @@
 import ClientSideComponent from "@/components/ClientSideComponent";
 import ContactForm from "@/components/ContactForm";
+import CreateUserForm from "@/components/CreateUserForm";
 import ServerSideComponent from "@/components/ServerSideComponent";
 
 export default function Home() {
@@ -7,7 +8,8 @@ export default function Home() {
     <div>
       <ServerSideComponent />
       <ClientSideComponent />
-      <ContactForm />
+      <CreateUserForm />
+      {/* <ContactForm /> */}
     </div>
   );
 }

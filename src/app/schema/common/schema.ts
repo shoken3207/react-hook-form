@@ -16,3 +16,18 @@ export const PasswordSchema = z
     /^(?=.*?[a-zA-Z])(?=.*?\d)(?=.*?[!@#$%^&*()_+{}\[\]:;"'<>,.?~\\/-])[a-zA-Z\d!@#$%^&*()_+{}\[\]:;"'<>,.?~\\/-]{8,100}$/,
     "パスワードは半角英数字混合で入力してください"
   );
+
+export const uploadImageSchema = z.object({
+  imageData: z.string().refine((data) => data.startsWith("data:image/"), {
+    message: "有効なBase64画像データではありません",
+  }),
+  fileName: z
+    .string()
+    .min(1, "ファイル名は必須です")
+    .regex(
+      /\.(png|jpg|jpeg|gif)$/i,
+      "有効な画像ファイルの拡張子が必要です（png, jpg, jpeg, gif）"
+    ),
+});
+
+export const uploadImagesSchema = z.array(uploadImageSchema);

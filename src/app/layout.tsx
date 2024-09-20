@@ -3,6 +3,8 @@ import localFont from "next/font/local";
 import "./globals.css";
 import TrpcProvider from "@/trpc/provider";
 import NextAuthProvider from "@/providers/NextAuth";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import ReactQueryProvider from "@/components/ReactQueryProvider";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -25,14 +27,17 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const queryClient = new QueryClient();
   return (
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <NextAuthProvider>
-          <TrpcProvider>{children}</TrpcProvider>
-        </NextAuthProvider>
+        <ReactQueryProvider>
+          <NextAuthProvider>
+            <TrpcProvider>{children}</TrpcProvider>
+          </NextAuthProvider>
+        </ReactQueryProvider>
       </body>
     </html>
   );
